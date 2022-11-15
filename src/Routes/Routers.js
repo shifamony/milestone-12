@@ -3,9 +3,11 @@ import Main from "../layout/Main";
 import About from "../Pages/About";
 import Appointment from "../Pages/Appointment/Appointment";
 import Contact from "../Pages/Contact";
+import Dashboard from "../Pages/Dashboard/Dashboard";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login";
 import Reviews from "../Pages/Reviews";
+import Signup from "../Pages/Signup";
 
  const router = createBrowserRouter([
    {
@@ -34,6 +36,10 @@ import Reviews from "../Pages/Reviews";
           element: <Login></Login>
         },
         {
+          path: '/signup',
+          element: <Signup></Signup>
+        },
+        {
             path: '/contact',
             element: <Contact></Contact>
           }
@@ -41,6 +47,11 @@ import Reviews from "../Pages/Reviews";
      
 
    },
+
+   {
+    path:'/dashboard',
+    element: <Dashboard></Dashboard>
+   }
 
 ]);
 export default router;
