@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../contexts/AuthProvider';
 
@@ -8,10 +8,11 @@ const Signup = () => {
     const {register,handleSubmit, formState:{errors}} = useForm();
 
     const {createUser, updateUser} = useContext(AuthContext);
-   const [signupError, setSignupError] = useState('')
+   const [signupError, setSignupError] = useState('');
+    const navigate = useNavigate();
 
     const handelSignup = (data) => {
-        console.log(data);
+        //console.log(data);
 
         //form empty
         setSignupError('');
@@ -23,15 +24,20 @@ const Signup = () => {
 
             //UPDATE USER PROFILE
             const userInfo = {
-                displyName: data.name
+                displayName: data.name
             }
             updateUser(userInfo)
-            .then(() => {})
+            .then(() => {
+                navigate('/')
+            })
             .catch(e =>console.log(e))
             toast('Your registration is success')
         })
 
-        .catch(e => toast(e,'success'))
+        .catch(e => {
+            toast(e,'success');
+            setSignupError(e.message);
+        });
     }
     return (
         <div className='h-[800px] flex justify-center items-center'>

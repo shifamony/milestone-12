@@ -21,6 +21,11 @@ const signIn = (email,password)=> {
     return signInWithEmailAndPassword(auth,email,password)
 }
 
+ //update profile
+ const updateUser = (userInfo) => {
+    return updateProfile(auth.currentUser, userInfo)
+  }
+
 //This function helps us to know whether users logged in or not
 useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -33,10 +38,7 @@ useEffect(() => {
     }
 
   },[]);
-  //update profile
-const updateUser = (userInfo) => {
-  return updateProfile(user, userInfo)
-}
+ 
 
 
 
